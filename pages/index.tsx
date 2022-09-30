@@ -11,7 +11,7 @@ const Home: NextPage<{ characters: Character[], info: Info }> = ({characters, in
   const [query, setQuery] = useState<string>('');
   const [result, setResult] = useState<Character[]>();
   const [infos, setInfos] = useState<Info>();
-  const [call, setCall] = useState('https://rickandmortyapi.com/api/character');
+  const [call, setCall] = useState<string>('https://rickandmortyapi.com/api/character');
 
   // This function is called when the input changes
   const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -120,7 +120,8 @@ const Home: NextPage<{ characters: Character[], info: Info }> = ({characters, in
 }
 
 export const getStaticProps: GetStaticProps = async (context) =>{  
-  console.log(JSON.stringify(context, null, 3));
+  console.log('context log : ', context.params);
+  
   const res = await fetch("https://rickandmortyapi.com/api/character");
   const { results, info }: GetCharacterResults = await res.json();
   

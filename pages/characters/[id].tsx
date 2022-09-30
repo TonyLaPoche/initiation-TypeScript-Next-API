@@ -5,12 +5,13 @@ import Layout from '../../components/layout';
 import imageLoader from '../../imagesLoader';
 import { Character } from "../../types";
 import styles from '../../styles/Home.module.css'
+import { ReactNode } from 'react';
 
 function CharacterPage({ character }:{character: Character}) {
     const router = useRouter()
-    console.log('router => ',router);
-    console.log('router.query =>',router.query);
-    console.log(character);
+    console.log(router);
+    console.log(router.query);
+    
     return <div className={styles.card}>
         <h2>Character page of {character.name} </h2>
         <Image
@@ -31,7 +32,7 @@ function CharacterPage({ character }:{character: Character}) {
     </div>
 }
 
-CharacterPage.getLayout = function getLayout(page: typeof CharacterPage){
+CharacterPage.getLayout = function getLayout(page: ReactNode){
     return <Layout>{page}</Layout>;
 }
 
