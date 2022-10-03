@@ -6,13 +6,16 @@ import imageLoader from '../imagesLoader'
 import styles from '../styles/Home.module.css'
 import { Character, GetCharacterResults, Info } from '../types'
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 
 const Home: NextPage<{ characters: Character[], info: Info }> = ({characters, info}) => {
+  const router = useRouter()
   const [query, setQuery] = useState<string>('');
   const [result, setResult] = useState<Character[]>();
   const [infos, setInfos] = useState<Info>();
   const [call, setCall] = useState<string>('https://rickandmortyapi.com/api/character');
-
+  console.log('router', router);
+  console.log('router query', router.query);
   // This function is called when the input changes
   const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const enteredName = event.target.value;
@@ -27,6 +30,7 @@ const Home: NextPage<{ characters: Character[], info: Info }> = ({characters, in
     query != "" ? setResult(foundItems) : setResult(characters);
     setInfos(info);
   };
+  console.log('retour de info :', info);
   
   return (
     <>
@@ -120,10 +124,12 @@ const Home: NextPage<{ characters: Character[], info: Info }> = ({characters, in
 }
 
 export const getStaticProps: GetStaticProps = async (context) =>{  
-  console.log('context log : ', context.params);
   
   const res = await fetch("https://rickandmortyapi.com/api/character");
+  // const res = await fetch(" // ! 'VarDynamique');
+  // NOTE J'essaie de rendre l'URL dynamique à un état du State mais je comprend pas encore très bien l'usage de // ? "context"
   const { results, info }: GetCharacterResults = await res.json();
+  
   
   return {
     props:{
