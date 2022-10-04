@@ -195,7 +195,7 @@ export default Doc;
 L'attribut `<Link />` va avoir besoin d'un paramètre `href=...` afin de lui notifier ou aller.  
 Il aura également besoin d'un enfant `<a> adresse </a>`  
 
-Démonstration sur la page d'accueil
+Démonstration : `pages/index.tsx`
 
 ```tsx
 import Link from "next/link";
@@ -206,13 +206,13 @@ const Home = () => {
       <h1>Home Page</h1>
       <Link href='/blog'> 
         {
-            // nous nous dirigeons sur l'adresse "localhost:3000/blog"
+            // au click nous nous dirigeons sur l'adresse "localhost:3000/blog"
         }
         <a>blog</a>
       </Link>
       <Link href='/product'>
         {
-            // nous nous dirigeons sur l'adresse "localhost:3000/product"
+            //et ici nous nous dirigeons sur l'adresse "localhost:3000/product"
         }
         <a>products list</a>
       </Link>
@@ -223,3 +223,112 @@ const Home = () => {
 
 export default Home;
 ```
+
+Afin d'allez un peu plus loin sur la page produit nous avons aussi la possibilité de passer en "props" des donnés permettant de spécifier l'url souhaité.  
+
+Démonstration : `product/index.tsx`  
+
+```tsx
+import Link from "next/link";
+
+const ProductList = ({ productId = 100 }) => {
+    return (
+        <>
+            <Link href='/'>
+                {
+                    // lien nous redirigeant sur la page d'accueil 
+                }
+                <a>Home</a>
+            </Link>
+            <h2>
+                <Link href="/product/1">
+                    {
+                        // Ici direction "localhost:3000/product/1"
+                    }
+                    <a>Product 1</a>
+                </Link>
+            </h2>
+            <h2>
+                <Link href="/product/2">
+                    {
+                        // Ici direction "localhost:3000/product/2"
+                    }
+                    <a>Product 2</a>
+                </Link>
+            </h2>
+            <h2>
+                <Link href="/product/3" replace>
+                    {
+                        // Ici direction "localhost:3000/product/3"
+                        // MAIS ! avec l'ajout de l'attribut "replace"
+                        // qui de ce que j'ai comprit si l'on fait un "retour en arrière" sur notre navigateur nous redirige à la page d'accueil
+                    }
+                    <a>Product 3</a>
+                </Link>
+            </h2>
+            <h2>
+                <Link href={`/product/${productId}`}>
+                    {
+                        // Ici direction "localhost:3000/product/[de 'productId']"
+                        // L'info transmise en paramètres au composant "ProductList" qui est "productId" (initialisé à 100 pour le moment)
+                        // est directement utilisé dans l'url.
+                        // Nous irons donc à l'adresse "localhost:3000/product/100" 
+                    }
+                    <a>Product {productId}</a>
+                </Link>
+            </h2>
+        </>
+    )
+  }
+  
+  export default ProductList;
+```
+
+#### Element programmable de navigation  
+
+Mise en situation :  
+> Imaginons que nous qu'au "click" sur un "bouton" nous avons une redirection sur la page d'un produit.
+Nous allons pas passer par la Balise "Link" mais l'on va utiliser le hook "useRouter" et la fonction "push".  
+
+Démonstration : `pages/index.tsx`  
+
+```tsx
+
+import Link from "next/link";
+import { NextRouter, useRouter } from "next/router";
+
+const Home = () => {
+
+const router: NextRouter = useRouter();
+// J'ai typer "router" avec NextRouter afin de ne pas avoir de soucis avec TS mais très honnêtement je ne vais pas m'avancer sur le pourquoi du comment par peur de dire des bêtises :)
+  const handleClick = () => {
+    console.log('place order used !');
+    // L'ont ouvre une fonction et on verifie qu'au click on à bien un message dans le console.log
+
+    router.push('/product');
+    // cela nous redirigera sur l'url localhost:3000/product
+  }
+
+  return (
+    <div>
+      <h1>Home Page</h1>
+      <Link href='/blog'>
+        <a>blog</a>
+      </Link>
+      <Link href='/product'>
+        <a>products list</a>
+      </Link>
+
+      <button onClick={handleClick}>Place Order</button>
+
+    </div>
+    
+  )
+}
+
+export default Home;
+
+```
+
+Dans le cas ou vous souhaiter allez plus loin dans la navigation  
+Retrouver la documentation basic des routes [ici](https://nextjs.org/docs/routing/introduction) et de manière avancé [ici](https://nextjs.org/docs/api-reference/next/router)  
