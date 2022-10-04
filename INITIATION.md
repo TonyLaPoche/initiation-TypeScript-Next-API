@@ -153,7 +153,7 @@ Nous allons crée le dossier `/docs` et à l'intérieur nous allons lui glisser 
 
 Dans `[[...params]].tsx` :
 
-```tsx
+```ts
 import { useRouter } from "next/router";
 
 const Doc = () => {
@@ -185,4 +185,41 @@ const Doc = () => {
 } 
 
 export default Doc;
+```
+
+### Les liens de navigation
+
+#### Composant de navigation  
+
+*Nous allons désormais utilisé un composant natif a Next.js `<Link />`*  
+L'attribut `<Link />` va avoir besoin d'un paramètre `href=...` afin de lui notifier ou aller.  
+Il aura également besoin d'un enfant `<a> adresse </a>`  
+
+Démonstration sur la page d'accueil
+
+```tsx
+import Link from "next/link";
+
+const Home = () => {
+  return (
+    <div>
+      <h1>Home Page</h1>
+      <Link href='/blog'> 
+        {
+            // nous nous dirigeons sur l'adresse "localhost:3000/blog"
+        }
+        <a>blog</a>
+      </Link>
+      <Link href='/product'>
+        {
+            // nous nous dirigeons sur l'adresse "localhost:3000/product"
+        }
+        <a>products list</a>
+      </Link>
+    </div>
+    
+  )
+}
+
+export default Home;
 ```
