@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-const Doc = () => {
+const Doc = (): JSX.Element => {
     const router = useRouter();
     const { params = [] } = router.query;
     console.log(params);

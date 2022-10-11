@@ -332,3 +332,73 @@ export default Home;
 
 Dans le cas ou vous souhaiter allez plus loin dans la navigation  
 Retrouver la documentation basic des routes [ici](https://nextjs.org/docs/routing/introduction) et de manière avancé [ici](https://nextjs.org/docs/api-reference/next/router)  
+
+----------
+
+### Page 404 custom
+
+Afin de crée une page 404 custom. Nous aurons tout simplement a crée une page `404.tsx` à la racine de l'app. CAD dans `/page/404.tsx`...
+
+Du faite que le composant porte le nom '404' amènera obligatoirement le client web sur cette page dans le cas ou il va sur une route inexistante.  
+
+----------
+
+## Pre-rendu et Récupération de Data  introduction
+
+Il existe deux types de pré-rendu dans Next.js. La différence entre eux réside dans le moment où le code HTML d’une page est généré. La méthode que vous choisissez dépend du type de données dont il s’agit et du moment où vous souhaitez qu’elles soient disponibles pour votre utilisateur.
+
+1. Génération statique
+2. Rendu côté serveur
+
+### Génération statique (SSG) (recommandé)
+
+Cette méthode de pré-rendu génère le code HTML de vos pages sur le serveur uniquement au moment de la construction, c’est-à-dire lorsque vous créez votre application pour la production (construction Next.js). Une fois le code HTML de votre page généré, il peut être mis en cache et servi par un CDN et réutilisé à chaque demande, le rendant disponible à l’avance aux visiteurs de votre site.
+
+Next.js pré-rend statiquement une page par défaut si les données sont écrites directement dans le code source de l’application et ne nécessitent pas de récupération de données externes au moment de la construction.
+
+```tsx
+const About = (): JSX.Element => {
+         return (
+        <div>
+          <h1>About Us</h1>
+          <p>{}</p>
+        </div>
+      );
+}
+export default About;
+```
+
+Notre About Us La page dans l’extrait de code ci-dessus ne nécessite pas de récupération de données externes et, par défaut, elle sera pré-rendu au moment de la construction.
+
+### Génération statique avec des données et des routes prédéfinies
+
+Pour les pages qui dépendent de données externes (base de données, système de fichiers, etc.), il suffit d’exporter une async fonction appelée **getStaticProps** avec votre composant de page. *Next.js* saura exécuter le **getStaticProps** fonction et récupère les données au moment de la construction. Ensuite, tout ce qui est renvoyé comme accessoire sera transmis au composant exporté à partir de la page.
+
+#### exemple : (homePage)
+
+Je vais utilisé une API REST (libre) sur Rick and Morty ou vous pourrez l'entièreter de la doc [ici](https://rickandmortyapi.com/documentation)
+
+```tsx
+    export async const getStaticProps: GetStaticProps = () =>  {
+    
+      const res = await fetch("adresse de votre api");
+      const retourApi = await res.json();
+
+return {
+        props: {
+          retourApi
+        },
+      };
+    }
+```
+
+----------
+
+
+### Type de pre-rendering
+
+#### Static Generation
+
+
+
+#### Server Side Rendering

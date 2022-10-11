@@ -29,5 +29,4 @@ const ProductList = ({ productId = 100 }) => {
         </>
     )
   }
-  
   export default ProductList;
