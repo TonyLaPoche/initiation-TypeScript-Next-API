@@ -3,34 +3,34 @@ import Link from "next/link";
 import { NextRouter, useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
 import { GetCharacterResults } from "../types";
+import style from "../styles/Home.module.css"
 
 
 const Home:NextPage<GetCharacterResults> = ({ ...retourAPI }: GetCharacterResults): JSX.Element => {
 
-const router: NextRouter = useRouter();
 const stockResponseAPI = retourAPI
-  const handleClick = () => {
-    console.log('place order used !');
-    router.push('/product');    
-  }
 
-  const handleClickAPI = () => {
+  const handleClickAPI = (): void => {
     console.log(stockResponseAPI);  
   }
 
   return (
-    <div>
-      <h1>Home Page</h1>
-      <Link href='/blog'>
-        <a>blog</a>
-      </Link>
-      <Link href='/product'>
-        <a>products list</a>
-      </Link>
-
-      <button onClick={handleClick}>Place Order</button>
+    <div className={style.main}>
+      <h1>API Rick &amp; Morty</h1>
+      <nav>
+        <ul>
+          <li>
+            <Link href="/characters"><a>characters list</a></Link>
+          </li>
+          <li>
+            <Link href="/episodes"><a>episodes list</a></Link>
+          </li>
+          <li>
+            <Link href="/locations"><a>locations list</a></Link>
+          </li>
+        </ul>
+      </nav>
       <button onClick={handleClickAPI}>Check API result</button>
-
     </div>
     
   )
@@ -38,12 +38,12 @@ const stockResponseAPI = retourAPI
 
 export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext<ParsedUrlQuery, PreviewData>) =>  {
     
-  const res = await fetch("https://rickandmortyapi.com/api/character");
+  const res = await fetch("https://rickandmortyapi.com/api");
   const retourApi = await res.json();
 
   return {
     props: {
-      retourApi
+      data: retourApi
     },
   };
 }
