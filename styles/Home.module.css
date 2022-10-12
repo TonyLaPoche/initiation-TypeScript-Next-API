@@ -1,14 +1,11 @@
 .container {
-  padding: 0 2rem;
+  /* padding: 0 2rem; */
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .main {
-  /* min-height: 100vh; */
-  /* padding: 4rem 0; */
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -79,9 +76,11 @@
 }
 
 .card {
-  margin: 1rem;
-  padding: 1.5rem;
-  text-align: left;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
   color: inherit;
   text-decoration: none;
   border: 1px solid #eaeaea;

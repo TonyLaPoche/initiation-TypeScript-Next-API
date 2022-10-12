@@ -8,12 +8,6 @@ import style from "../styles/Home.module.css"
 
 const Home:NextPage<GetCharacterResults> = ({ ...retourAPI }: GetCharacterResults): JSX.Element => {
 
-const stockResponseAPI = retourAPI
-
-  const handleClickAPI = (): void => {
-    console.log(stockResponseAPI);  
-  }
-
   return (
     <div className={style.main}>
       <h1>API Rick &amp; Morty</h1>
@@ -30,7 +24,6 @@ const stockResponseAPI = retourAPI
           </li>
         </ul>
       </nav>
-      <button onClick={handleClickAPI}>Check API result</button>
     </div>
     
   )

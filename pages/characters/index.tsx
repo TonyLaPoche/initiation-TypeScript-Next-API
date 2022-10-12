@@ -1,15 +1,21 @@
 import { GetServerSideProps } from "next"
 import Image from "next/image";
+import { useRouter } from "next/router";
 import imageLoader from "../../imagesLoader";
 import style from "../../styles/Home.module.css"
 import { GetCharacterResults } from "../../types";
 
-const CharactersList = ({ info, results}: GetCharacterResults) => {
+const Characters = ({ info, results }: GetCharacterResults) => {
+    // console.log(info.count);
+    // console.log(info.pages);
     console.log(info);
-    console.log(results);
-
-    const handleClick = () =>  {
+    // console.log(results);
+    const router = useRouter()
+    console.log(router);
+    
+    const handleClickNextPage = () =>  {
         console.log('click ok');
+        router.push(router.route + '/2')
         
     }
     
@@ -20,7 +26,7 @@ const CharactersList = ({ info, results}: GetCharacterResults) => {
                 Page 1 
             </p>
             <p>
-                <button type="button" onClick={handleClick}>
+                <button type="button" onClick={handleClickNextPage}>
                     next
                 </button>
             </p>
@@ -59,4 +65,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
 }
 
-export default CharactersList
+export default Characters
