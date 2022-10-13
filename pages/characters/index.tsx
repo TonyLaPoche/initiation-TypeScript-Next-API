@@ -1,55 +1,42 @@
 import { GetServerSideProps } from "next"
 import Image from "next/image";
 import { useRouter } from "next/router";
+import CarouselCharacters from "../../components/Caroussel";
 import imageLoader from "../../imagesLoader";
 import style from "../../styles/Home.module.css"
 import { GetCharacterResults } from "../../types";
 
-const Characters = ({ info, results }: GetCharacterResults) => {
-    // console.log(info.count);
-    // console.log(info.pages);
-    console.log(info);
-    // console.log(results);
-    const router = useRouter()
-    console.log(router);
-    
+const Characters = ({ info, results }: GetCharacterResults):JSX.Element => {
+
+    const router = useRouter()    
     const handleClickNextPage = () =>  {
         console.log('click ok');
-        router.push(router.route + '/2')
+        router.push(router.route + '/1')
         
     }
+    console.log(info);
     
     return (
         <>
-            <h1>characters of Rick and Morty</h1>
-            <p>
-                Page 1 
-            </p>
-            <p>
-                <button type="button" onClick={handleClickNextPage}>
-                    next
-                </button>
-            </p>
-            {results.map(character => (
-            <div className={style.card} key={character.id}>
-
-                <Image
-                    src={character.image}
-                    alt={character.name}
-                    width={200}
-                    height={200}
-                    loader={imageLoader}
-                />
-
-                <ul>
-                    <li>name : {character.name} </li>
-                    <li>gender : {character.gender} </li>
-                    <li>status : {character.status} </li>
-                    <li>species : {character.species} </li>
-                    <li>type : {character.type} </li>
-                </ul>
-            </div>   
-            ))}
+            <div className={style.main}>
+                <h1>characters of Rick and Morty</h1>
+                <p>
+                    Here we can found all characters about the Rick And Morty Series
+                </p>
+                <p>
+                    You have {info.count} characters founded on {info.pages} pages.
+                </p>
+                <p>
+                    To see Pages per Pages click on the button &quot;show me&quot; below
+                </p>
+                <p>
+                    <button type="button" onClick={handleClickNextPage}>
+                        Show me
+                    </button>
+                </p>
+            </div>
+            
+            <CarouselCharacters results={results} info={info} />
         </>
     )
 }

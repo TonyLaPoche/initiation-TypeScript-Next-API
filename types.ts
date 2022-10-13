@@ -3,6 +3,16 @@ export interface GetCharacterResults {
     results: Character[];
 }
 
+export interface GetLocationResult {
+    info:    Info;
+    results: Location[];
+}
+
+export interface GetEpisodeResult {
+    info:    Info;
+    results: Episode[];
+}
+
 export interface Info {
     count: number;
     pages: number;
@@ -45,4 +55,24 @@ export enum Status {
     Alive = "Alive",
     Dead = "Dead",
     Unknown = "unknown",
+}
+
+export interface Location {
+    id:        number;
+    name:      string;
+    type:      string;
+    dimension: string;
+    residents: string[];
+    url:       string;
+    created:   Date;
+}
+
+export interface Episode {
+    id:         number;
+    name:       string;
+    air_date:   string;
+    episode:    string;
+    characters: string[];
+    url:        string;
+    created:    Date;
 }

@@ -5,7 +5,7 @@ import style from "../../styles/Home.module.css"
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 
-const Character = ({ info, results}: GetCharacterResults) => {
+const Character = ({ info, results}: GetCharacterResults):JSX.Element => {
     const router = useRouter();
     const { id } = router.query;
     const nextPage = parseInt(typeof id === "string" ? id : id[0], 10) + 1;
@@ -54,6 +54,7 @@ const Character = ({ info, results}: GetCharacterResults) => {
                     <Image
                         src={character.image}
                         alt={character.name}
+                        
                         width={200}
                         height={200}
                         loader={imageLoader}
