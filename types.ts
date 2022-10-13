@@ -1,3 +1,5 @@
+import { StringifyOptions } from "querystring";
+
 export interface GetCharacterResults {
     info: Info;
     results: Character[];
@@ -32,7 +34,7 @@ export interface Character {
     image:    string;
     episode:  string[];
     url:      string;
-    created:  Date;
+    created:  Date ;
 }
 
 export enum Gender {

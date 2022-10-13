@@ -21,8 +21,13 @@ const Character = ({ info, results}: GetCharacterResults):JSX.Element => {
         router.push(`/characters/${prevPage}`)
     }
 
-    console.log(info);
+    // console.log(info);
 
+    const handleKey = (e) => {
+        if (e.key === "Enter") {
+            router.push(`/characters/${e.currentTarget.value}`)
+        }
+    }
 
     return (
         <>
@@ -38,6 +43,14 @@ const Character = ({ info, results}: GetCharacterResults):JSX.Element => {
                         previous
                     </button>
                     }
+                    <input
+                        type="number"
+                        defaultValue={ id }
+                        onChange={(e) => console.log(e.target.value)}
+                        onKeyDown={handleKey}
+                        min="1"
+                        max={info.pages}
+                    />
                     {info.next === null ? null
                     : 
                     <button type="button" onClick={handleClickNext}>
@@ -52,9 +65,9 @@ const Character = ({ info, results}: GetCharacterResults):JSX.Element => {
                 <div className={style.card} key={character.id}>
 
                     <Image
+                        priority
                         src={character.image}
                         alt={character.name}
-                        
                         width={200}
                         height={200}
                         loader={imageLoader}
@@ -67,6 +80,11 @@ const Character = ({ info, results}: GetCharacterResults):JSX.Element => {
                         <li>status : {character.status} </li>
                         <li>species : {character.species} </li>
                         <li>type : {character.type} </li>
+                        <li>origin : {character.origin.name} </li>
+                        <li>created : {character.created.slice(0, 10)} </li>
+                        {
+                            // NOTE demander à richard comment faire passez le type slice 
+                        }
                     </ul>
                 </div>   
                 ))}

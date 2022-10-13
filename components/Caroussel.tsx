@@ -12,7 +12,7 @@ const CarouselCharacters = ({results, info}: GetCharacterResults): JSX.Element =
     const responsive = {
         desktop: {
           breakpoint: { max: 3000, min: 1024 },
-          items: 4,
+          items: 5,
           slidesToSlide: 1 // optional, default to 1.
         },
         tablet: {
@@ -37,9 +37,9 @@ const CarouselCharacters = ({results, info}: GetCharacterResults): JSX.Element =
         autoPlay={true}
         autoPlaySpeed={3000}
         keyBoardControl={false}
-        customTransition="all 5 ease-in"
+        customTransition="all 1s ease-in-out"
         // transitionDuration={5000}
-        centerMode={true}
+        centerMode={false}
         containerClass="carousel-container"
         removeArrowOnDeviceType={["desktop", "tablet", "mobile"]}
         // deviceType={this.props.deviceType}
