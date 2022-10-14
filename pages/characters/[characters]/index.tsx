@@ -1,29 +1,28 @@
-import { GetCharacterResults } from "../../types";
+import { GetCharacterResults } from "../../../types";
 import Image from "next/image";
-import imageLoader from "../../imagesLoader";
-import style from "../../styles/Home.module.css"
+import imageLoader from "../../../imagesLoader";
+import style from "../../../styles/Home.module.css"
 import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
+import React from "react";
 
-const Character = ({ info, results}: GetCharacterResults):JSX.Element => {
-    const router = useRouter();
-    const { id } = router.query;
-    const nextPage = parseInt(typeof id === "string" ? id : id[0], 10) + 1;
-    const prevPage = parseInt(typeof id === "string" ? id : id[0], 10) - 1;
+const Characters = ({ info, results}: GetCharacterResults):JSX.Element => {
+    const router: NextRouter = useRouter();
+    const { characters } = router.query;
+    const nextPage: Number = parseInt(typeof characters === "string" ? characters : characters[0], 10) + 1;
+    const prevPage: Number = parseInt(typeof characters === "string" ? characters : characters[0], 10) - 1;
     
     const handleClickNext = () => {
-        console.log('click ok'); 
         router.push(`/characters/${nextPage}`)
     }
 
     const handleClickPrev = () => {
-        console.log('click ok'); 
         router.push(`/characters/${prevPage}`)
     }
 
     // console.log(info);
 
-    const handleKey = (e) => {
+    const handleKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
             router.push(`/characters/${e.currentTarget.value}`)
         }
@@ -34,7 +33,7 @@ const Character = ({ info, results}: GetCharacterResults):JSX.Element => {
             <div className={style.main}>
                 <h1>characters of Rick and Morty</h1>
                 <p>
-                    Page { id } on {info.pages}
+                    Page { characters } on {info.pages}
                 </p>
                 <p>
                     {info.prev === null ? null
@@ -45,7 +44,7 @@ const Character = ({ info, results}: GetCharacterResults):JSX.Element => {
                     }
                     <input
                         type="number"
-                        defaultValue={ id }
+                        defaultValue={ characters }
                         onChange={(e) => console.log(e.target.value)}
                         onKeyDown={handleKey}
                         min="1"
@@ -81,10 +80,6 @@ const Character = ({ info, results}: GetCharacterResults):JSX.Element => {
                         <li>species : {character.species} </li>
                         <li>type : {character.type} </li>
                         <li>origin : {character.origin.name} </li>
-                        <li>created : {character.created.slice(0, 10)} </li>
-                        {
-                            // NOTE demander à richard comment faire passez le type slice 
-                        }
                     </ul>
                 </div>   
                 ))}
@@ -94,8 +89,8 @@ const Character = ({ info, results}: GetCharacterResults):JSX.Element => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const { id } = context.query;
-    const res = await fetch(`https://rickandmortyapi.com/api/character/?page=${id}`)
+    const { characters } = context.query;
+    const res = await fetch(`https://rickandmortyapi.com/api/character/?page=${characters}`)
     const data = await res.json()
     
     return {
@@ -106,4 +101,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 
-export default Character
+export default Characters
