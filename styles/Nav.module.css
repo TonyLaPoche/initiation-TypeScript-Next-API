@@ -1,0 +1,54 @@
+.decoration {
+    background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0.5) 80%);
+    border-top: 5px solid black;
+    border-bottom: 1px solid black;
+}
+
+.container {
+    display:flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.logo {
+    position: absolute;
+}
+
+.items {
+    display: flex;
+    justify-content: space-evenly;
+    width: calc(1/3*100vw);
+}
+
+.item {
+    position: relative;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+.item:hover  {
+    color: rgb(238, 219, 50);
+    max-height:fit-content;
+    background-image: url('../public/assets/image/portal.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-shadow: 1px 1px 2px black ;
+    animation: moveOn 500ms ease-in;
+}
+
+@keyframes moveOn {
+    0% {
+        background-size: 0;
+    }
+    50% {
+        background-size: 1.5rem;
+    }
+    100% {
+        background-size: 3rem;
+
+    }
+}

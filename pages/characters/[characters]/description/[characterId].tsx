@@ -8,10 +8,7 @@ import { Character } from "../../../../types";
 const Character = ({ ...data }: Character): JSX.Element => {
     const router = useRouter();
     const { characters, characterId }  = router.query
-    
-    console.log(router.query);
-    console.log(typeof data);
-    console.log(data);
+    console.log(router);
     
     return (
         <div>
@@ -27,7 +24,7 @@ const Character = ({ ...data }: Character): JSX.Element => {
             <p>id : {data.id} </p>
             <p>name : {data.name} </p>
             <p>gender : {data.gender} </p>
-            <p>pstatus : {data.status} </p>
+            <p>status : {data.status} </p>
             <p>species : {data.species} </p>
             <p>type : {data.type} </p>
             <p>origin : {data.origin.name} </p>

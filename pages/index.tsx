@@ -3,27 +3,22 @@ import Link from "next/link";
 import { NextRouter, useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
 import { GetCharacterResults } from "../types";
-import style from "../styles/Home.module.css"
+import type { NextPageWithLayout } from './_app';
+import style from "../styles/Home.module.css";
+import { ReactElement } from "react";
+import Layout from "../components/Layout";
 
 
-const Home:NextPage<GetCharacterResults> = ({ ...retourAPI }: GetCharacterResults): JSX.Element => {
+const Home:NextPageWithLayout<GetCharacterResults> = ({ ...retourAPI }: GetCharacterResults): JSX.Element => {
 
   return (
     <div className={style.main}>
-      <h1>API Rick &amp; Morty</h1>
-      <nav>
-        <ul>
-          <li>
-            <Link href="/characters"><a>characters list</a></Link>
-          </li>
-          <li>
-            <Link href="/episodes"><a>episodes list</a></Link>
-          </li>
-          <li>
-            <Link href="/locations"><a>locations list</a></Link>
-          </li>
-        </ul>
-      </nav>
+      <p>Hi, I'm Tony.</p>
+      <p>I'm currently training to manipulate the "TypeScript" language with "NextJs". To do this I used Axel Fuhrmann's API on the Rick & Morty universe.</p>
+      <p>With this site you will be able to navigate in this API. Hopefully you won't encounter any bug. </p>
+      <p>Find my project here.
+      </p>
+      <p>Welcome to the site.</p>
     </div>
     
   )
@@ -40,5 +35,6 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
     },
   };
 }
+
 
 export default Home;
