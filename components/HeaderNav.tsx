@@ -1,7 +1,5 @@
 import nav from "../styles/Nav.module.css"
 import Link from "next/link"
-import Image from "next/image"
-import homeLogo from "../public/assets/image/portal.png"
 
 const NavLayout = () => {
     return (
@@ -24,39 +22,9 @@ const NavLayout = () => {
                     </Link>
                 </div>
                 <Link href='/about'>
-                    <a className={nav.item}>About</a>
+                    <a className={nav.item}>about</a>
                 </Link>
             </div>
-
-
-
-
-            {/* <nav className={style.nav}>
-                <div className={style.logoHome}>
-                    <Link href="/">
-                        <a>
-                          
-                        </a>
-                    </Link>
-                    <p>Home</p>
-                </div>
-                <ul className={style.navBar}>
-                    <li className={style.navBar__item}>
-                        <Link href="/characters"><a>characters</a></Link>
-                    </li>
-                    <li className={style.navBar__item}>
-                        <Link href="/episodes"><a>episodes</a></Link>
-                    </li>
-                    <li className={style.navBar__item}>
-                        <Link href="/locations"><a>locations</a></Link>
-                    </li>
-                </ul>
-                <ul className={style.navBar}>
-                    <li className={style.navBar__item}>
-                        <Link href="/about"><a>about</a></Link>
-                    </li>
-                </ul>
-            </nav> */}
         </div>
     )
 }

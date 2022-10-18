@@ -1,24 +1,17 @@
-import { GetServerSideProps } from "next"
-// import Image from "next/image";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import CarouselCharacters from "../../components/Caroussel";
-// import imageLoader from "../../imagesLoader";
 import style from "../../styles/Home.module.css"
-import { GetCharacterResults } from "../../types";
+import { GetEpisodeResult } from "../../types";
 
-const Characters = ({ info, results }: GetCharacterResults):JSX.Element => {
-
+const Episodes = ({ info, results }: GetEpisodeResult):JSX.Element => {
+    console.log(info);
+    console.log(results);
     const router = useRouter()    
     const handleClickNextPage = () =>  {
         console.log('click ok');
         router.push(router.route + '/1')
         
     }
-    // console.log(info);
-    const Random:number = Math.floor(Math.random() * 42);
-    console.log(Random);
-    
-    
     return (
         <>
             <div className={style.main}>
@@ -27,10 +20,10 @@ const Characters = ({ info, results }: GetCharacterResults):JSX.Element => {
                     Here we can found all characters about the Rick And Morty Series
                 </p>
                 <p>
-                    You have {info.count} characters founded on {info.pages} pages.
+                    You have {info.count} episodes founded on {info.pages} pages.
                 </p>
                 <p>
-                    To see characters per pages click on the button &quot;show me&quot; below
+                    To see each episodes per Pages click on the button &quot;show me&quot; below
                 </p>
                 <p>
                     <button type="button" onClick={handleClickNextPage}>
@@ -38,17 +31,14 @@ const Characters = ({ info, results }: GetCharacterResults):JSX.Element => {
                     </button>
                 </p>
             </div>
-            
-            <CarouselCharacters results={results} info={info} />
         </>
     )
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const Random:number = Math.floor(Math.random() * 42);
-    const res = await fetch(`https://rickandmortyapi.com/api/character/?page=${Random})`)
+    const res = await fetch("https://rickandmortyapi.com/api/episode")
     const data = await res.json()
-    
+
     return {
         props: {
             ...data
@@ -56,4 +46,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
 }
 
-export default Characters
+
+
+export default Episodes;

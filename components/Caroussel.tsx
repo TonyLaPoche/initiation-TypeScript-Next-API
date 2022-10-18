@@ -9,6 +9,8 @@ import { GetCharacterResults } from "../types";
 
 
 const CarouselCharacters = ({results, info}: GetCharacterResults): JSX.Element => {
+  console.log(results);
+  
     const responsive = {
         desktop: {
           breakpoint: { max: 3000, min: 1024 },

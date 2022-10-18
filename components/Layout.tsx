@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
       <>
         <HeaderTitle />
         <HeaderNav />
-        <main className={style.main}>{children}</main>
+        <main>{children}</main>
       </>
     )
   }

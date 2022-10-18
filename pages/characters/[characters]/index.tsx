@@ -1,7 +1,7 @@
 import { GetCharacterResults } from "../../../types";
 import Image from "next/image";
 import imageLoader from "../../../imagesLoader";
-import style from "../../../styles/Home.module.css"
+import list from "../../../styles/List.module.css"
 import { GetServerSideProps } from "next";
 import { NextRouter, useRouter } from "next/router";
 import React from "react";
@@ -20,7 +20,10 @@ const Characters = ({ info, results}: GetCharacterResults):JSX.Element => {
         router.push(`/characters/${prevPage}`)
     }
 
-    // console.log(info);
+    const handleClickCharacter = (e) => {
+        console.log(e.target.attributes.datatype.value);
+        router.push(`/characters/description/${e.target.attributes.datatype.value}`)
+    }
 
     const handleKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
@@ -30,8 +33,8 @@ const Characters = ({ info, results}: GetCharacterResults):JSX.Element => {
 
     return (
         <>
-            <div className={style.main}>
-                <h1>characters of Rick and Morty</h1>
+            <div className={list.main}>
+                <h1 className={list.title}>characters of Rick and Morty Series</h1>
                 <p>
                     Page { characters } on {info.pages}
                 </p>
@@ -59,9 +62,9 @@ const Characters = ({ info, results}: GetCharacterResults):JSX.Element => {
                 </p>
             </div>
             
-            <div className={style.container}>
+            <div className={list.container}>
                 {results.map(character => (
-                <div className={style.card} key={character.id}>
+                <div className={list.card} key={character.id}>
 
                     <Image
                         priority
@@ -71,16 +74,12 @@ const Characters = ({ info, results}: GetCharacterResults):JSX.Element => {
                         height={200}
                         loader={imageLoader}
                     />
-
-                    <ul>
-                        <li>id : {character.id} </li>
-                        <li>name : {character.name} </li>
-                        <li>gender : {character.gender} </li>
-                        <li>status : {character.status} </li>
-                        <li>species : {character.species} </li>
-                        <li>type : {character.type} </li>
-                        <li>origin : {character.origin.name} </li>
-                    </ul>
+                    <h2>{character.name}</h2>
+                    <div className={list.button}>
+                        <button type="button" datatype={character.id.toString()} onClick={handleClickCharacter}>
+                             More Info 
+                        </button>
+                    </div>
                 </div>   
                 ))}
             </div>
