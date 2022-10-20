@@ -46,7 +46,7 @@ const Characters = ({ info, results }: GetCharacterResults):JSX.Element => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const Random:number = Math.floor(Math.random() * 42);
-    const res = await fetch(`https://rickandmortyapi.com/api/character/?page=${Random})`)
+    const res = await fetch(`https://rickandmortyapi.com/api/character/?page=${Random}`)
     const data = await res.json()
     
     return {
