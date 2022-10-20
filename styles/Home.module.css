@@ -90,8 +90,10 @@
 
 .caroussel__card {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
   justify-content: center;
+  align-items: center;
   margin-bottom: 0;
   padding: 1rem;
   color: inherit;
