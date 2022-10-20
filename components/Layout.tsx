@@ -7,10 +7,12 @@ import Footer from './Footer';
 const Layout = ({ children }) => {
     return (
       <>
+      <div className={style.global}>
         <HeaderTitle />
         <HeaderNav />
         <main>{children}</main>
         <Footer />
+      </div>
       </>
     )
   }

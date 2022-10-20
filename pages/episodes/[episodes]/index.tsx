@@ -54,12 +54,35 @@ const Episodes = ({ info, results}) => {
                     }   
                 </p>
             </div>
-            <ul>
+            <ul className={list.list}>
+                <li className={list.item}>
+                    <span>
+                        N° 
+                    </span>
+                    <span>
+                        - Name -
+                    </span>
+                    <span>
+                        Air date
+                    </span>
+                </li>
+                <hr className={list.separator}/>
                 {results.map((episode: Episode) => {
                     return (
-                        <li key={episode.name + episode.id}>
-                            {episode.episode} - {episode.name} - {episode.air_date}
-                        </li>
+                        <>
+                            <li key={episode.name + episode.id} className={list.item}>
+                                <span>
+                                    {episode.episode} 
+                                </span>
+                                <span>
+                                    - {episode.name} -
+                                </span>
+                                <span>
+                                    {episode.air_date}
+                                </span>
+                            </li>
+                            <hr className={list.separator}/>
+                        </>
                     )
                 })}
             </ul>

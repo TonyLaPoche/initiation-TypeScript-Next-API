@@ -7,8 +7,8 @@
     box-sizing: border-box;
     color: white;
     background: rgba(0, 0, 0, 0.8);
-    background: url("../public/assets/image/wallpaperfooter.jpg"); /* fallback */
-    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 82%, rgba(255,255,255,0) 90%), url("../public/assets/image/wallpaperfooter.jpg");    
+    background:rgb(29,29,29),  url("../public/assets/image/wallpaperfooter.jpg"); /* fallback */
+    background:linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 82%, rgba(255,255,255,0) 90%), url("../public/assets/image/wallpaperfooter.jpg");    
     background-size: contain;
     background-repeat: no-repeat;
     background-position: right;

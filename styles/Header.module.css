@@ -6,7 +6,8 @@
         url('../public/assets/image/thumb-1920-909641.png');
 
     background-repeat: no-repeat;
-    background-position-y: 60%;
+    background-position-y: 55%;
     background-size: cover ;
     height: 20rem;
+    width: 100%;
 }

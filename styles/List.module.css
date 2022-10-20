@@ -4,6 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
 }
 
 .title {
@@ -16,6 +17,36 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     padding: 1rem;
+}
+
+.list {
+  /* text-align: center; */
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.item {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 0.5em;
+  /* margin: 1rem 0; */
+}
+
+.item:hover  {
+  
+  color: rgb(0, 143, 31);
+  text-shadow: 1px 1px 3px rgb(238, 219, 50) ;
+  cursor: pointer;
+}
+
+.separator {
+  width: 100%;
+  margin: 0;
 }
 
 .card {
