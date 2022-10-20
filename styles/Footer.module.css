@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+    background: rgba(0, 0, 0, 0.8);
+    background: url("../public/assets/image/wallpaperfooter.jpg"); /* fallback */
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 82%, rgba(255,255,255,0) 90%), url("../public/assets/image/wallpaperfooter.jpg");    
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.head {
+    text-align: center;
+    font-style: italic;
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 1rem;
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: .5rem;
+}
+
+.item {
+    padding: .5rem;
+}
+
+.item:hover  {
+    color: rgb(238, 219, 50);
+    text-shadow: 2px 2px 3px rgb(0, 143, 31) ;
+    cursor: pointer;
+}

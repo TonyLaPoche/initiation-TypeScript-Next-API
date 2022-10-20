@@ -6,6 +6,7 @@ import { Episode } from "../../../types";
 const Episodes = ({ info, results}) => {
     const router: NextRouter = useRouter();
     const { episodes } = router.query;
+    
     const nextPage: Number = parseInt(typeof episodes === "string" ? episodes : episodes[0], 10) + 1;
     const prevPage: Number = parseInt(typeof episodes === "string" ? episodes : episodes[0], 10) - 1;
 
@@ -23,17 +24,12 @@ const Episodes = ({ info, results}) => {
         }
     }
 
-    // console.log(episodes);
-    // console.log(info);
-    console.log(results);
-    
-    
     return (
         <>
             <div className={list.main}>
                 <h1 className={list.title}>characters of Rick and Morty Series</h1>
                 <p>
-                    Page { episodes } on {info.pages}
+                    Season { episodes } - (5 Season in app)
                 </p>
                 <p>
                     {episodes === "1" ? null
@@ -48,9 +44,9 @@ const Episodes = ({ info, results}) => {
                         onChange={(e) => console.log(e.target.value)}
                         onKeyDown={handleKey}
                         min="1"
-                        max={info.pages}
+                        max="5"
                     />
-                    {episodes === "3" ? null
+                    {episodes === "5" ? null
                     : 
                     <button type="button" onClick={handleClickNext}>
                         next
@@ -74,7 +70,7 @@ const Episodes = ({ info, results}) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const { episodes } = context.query;
-    const res = await fetch(`https://rickandmortyapi.com/api/episode/?page=${episodes})`)
+    const res = await fetch(`https://rickandmortyapi.com/api/episode/?episode=S0${episodes}`)
     const data = await res.json()
     
     return {
