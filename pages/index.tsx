@@ -4,7 +4,7 @@ import { GetCharacterResults } from "../types";
 import style from "../styles/Home.module.css";
 
 
-const Home:NextPage<GetCharacterResults> = ({ ...retourAPI }: GetCharacterResults): JSX.Element => {
+const Home:NextPage = (): JSX.Element => {
 
   return (
     <div className={style.main}>
@@ -23,18 +23,5 @@ const Home:NextPage<GetCharacterResults> = ({ ...retourAPI }: GetCharacterResult
     
   )
 }
-
-export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext<ParsedUrlQuery, PreviewData>) =>  {
-    
-  const res = await fetch("https://rickandmortyapi.com/api");
-  const retourApi = await res.json();
-
-  return {
-    props: {
-      data: retourApi
-    },
-  };
-}
-
 
 export default Home;
