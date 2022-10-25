@@ -14,7 +14,6 @@ const Characters = ({ info, results }: GetCharacterResults):JSX.Element => {
         router.push(router.route + '/1')
         
     }
-    // console.log(info);
     const Random:number = Math.floor(Math.random() * 42);
     console.log(Random);
     
