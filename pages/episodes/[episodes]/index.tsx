@@ -1,5 +1,6 @@
 import { GetServerSideProps } from "next";
 import { NextRouter, useRouter } from "next/router";
+import SeasonTab from "../../../components/Season";
 import list from "../../../styles/List.module.css"
 import { Episode } from "../../../types";
 
@@ -67,24 +68,8 @@ const Episodes = ({ info, results}) => {
                     </span>
                 </li>
                 <hr className={list.separator}/>
-                {results.map((episode: Episode) => {
-                    return (
-                        <>
-                            <li key={episode.name + episode.id} className={list.item}>
-                                <span>
-                                    {episode.episode} 
-                                </span>
-                                <span>
-                                    - {episode.name} -
-                                </span>
-                                <span>
-                                    {episode.air_date}
-                                </span>
-                            </li>
-                            <hr className={list.separator}/>
-                        </>
-                    )
-                })}
+                {results.map((episode: Episode) => <SeasonTab key={episode.id} {...episode} />  
+                )}
             </ul>
 
         </>
