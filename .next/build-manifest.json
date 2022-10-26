@@ -25,10 +25,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/characters/[characters]": [
+    "/characters/description/[characterId]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/characters/[characters].js"
+      "static/chunks/pages/characters/description/[characterId].js"
     ]
   },
   "ampFirstPages": []
